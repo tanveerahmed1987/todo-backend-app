@@ -15,7 +15,7 @@ app.use(router);
 app.set("port", port);
 
 // Convert to async syntax
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   console.log(`Database & tables created!`);
 
   app.listen(port, function () {

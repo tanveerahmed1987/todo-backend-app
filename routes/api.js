@@ -1,16 +1,10 @@
 const express = require("express");
-const User = require("../models/user");
+const userController = require("../controller/userController");
+const todoController = require("../controller/todoController");
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-  res.send("Server is up and running");
-});
-
-router.post("/register", async (req, res, next) => {
-  let user = req.body;
-  user.isEnabled = 1;
-  const userObj = await User.create(user);
-  res.send(userObj);
-});
+router.get("/", (req, res, next) => res.send("Server is up and running"));
+router.post("/register", userController.createUser);
+router.post("/todos", todoController.createTodo);
 
 module.exports = router;
